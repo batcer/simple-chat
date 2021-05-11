@@ -1,0 +1,23 @@
+.mainView {
+    display: flex;
+    height: 100%;
+    max-width: 1280px;
+    margin: auto;
+}
+
+.bordered {
+    border: 1px solid lightgray;
+}
+
+.contacts {
+    composes: bordered;
+    flex: 0 0 200px;
+    background-color: white;
+}
+
+.messages {
+    composes: bordered;
+    border-left: none;
+    flex: 1 1;
+    background-color: lightyellow;
+}
