@@ -1,5 +1,5 @@
 import {v4 as uuid} from 'uuid';
-import {makeAutoObservable} from 'mobx';
+import {extendObservable} from 'mobx';
 
 export class Contact {
     id = null;
@@ -7,9 +7,8 @@ export class Contact {
     isMyself = false;
     store = null;
 
-    constructor(store, id = uuid()) {
-        makeAutoObservable(this);
+    constructor(options, store) {
+        extendObservable(this, options);
         this.store = store;
-        this.id = id;
     }
 }

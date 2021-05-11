@@ -1,5 +1,7 @@
 import {makeAutoObservable, runInAction} from 'mobx';
 import {Channel} from './Channel';
+import {Contact} from './Contact';
+import {Message} from './Message';
 
 export class ChatStore {
     storage;
@@ -33,7 +35,7 @@ export class ChatStore {
             this.isChannelLoading = true;
             this.storage.getMessages(contactId)
                 .then((fetchedMessages => {
-                    this.currentChannel.messages = fetchedMessages;
+                    this.currentChannel.messages = fetchedMessages.map(message => new Message(message));
                     this.isChannelLoading = false;
                 }))
         })
@@ -44,7 +46,7 @@ export class ChatStore {
         this.storage.getContacts().then(fetchedContacts => {
             runInAction(() => {
                 const contacts = fetchedContacts.reduce((acc, contact) => {
-                    acc[contact.id] = contact;
+                    acc[contact.id] = new Contact(contact, this);
                     return acc;
                 }, {});
                 this._contacts = contacts;

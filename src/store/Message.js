@@ -1,5 +1,5 @@
 import {v4 as uuid} from 'uuid';
-import {makeAutoObservable} from 'mobx';
+import {extendObservable} from 'mobx';
 
 export class Message {
     id = null;
@@ -7,7 +7,7 @@ export class Message {
     text = '';
     date = null;
 
-    constructor() {
-        makeAutoObservable(this);
+    constructor(options) {
+        extendObservable(this, options);
     }
 }
