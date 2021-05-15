@@ -1,21 +1,26 @@
 import React, {useContext} from 'react';
+import {observer} from 'mobx-react';
+import classnames from 'classnames';
 
 import {StoreContext} from '../context';
-import {observer} from 'mobx-react';
 
-const ContactItem = ({contact, clickHandler}) => {
+import styles from './ContactList.module.css';
+
+const ContactItem = ({contact, isActive, clickHandler}) => {
+    const classNames = classnames(styles.contact, {[styles.activeContact]: isActive});
     return (
-        <div onClick={clickHandler}>{contact.name}</div>
+        <div onClick={clickHandler} className={classNames}>{contact.name}</div>
     )
 }
 
 const ContactList = () => {
-    const {contacts, setCurrentChannel} = useContext(StoreContext);
+    const {contacts, isCurrentContact, setCurrentContact} = useContext(StoreContext);
     return (
-        contacts.filter(contact => !contact.isMyself).map(contact =>
+        contacts.filter(contact => !contact.isMyself()).map(contact =>
             <ContactItem
                 contact={contact} key={contact.id}
-                clickHandler={() => setCurrentChannel(contact)}
+                clickHandler={() => setCurrentContact(contact)}
+                isActive={isCurrentContact(contact)}
             />
         )
     )

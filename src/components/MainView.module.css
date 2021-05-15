@@ -5,19 +5,15 @@
     margin: auto;
 }
 
-.bordered {
-    border: 1px solid lightgray;
-}
-
 .contacts {
-    composes: bordered;
+    border-right: 1px solid lightgray;
     flex: 0 0 200px;
     background-color: white;
 }
 
-.messages {
-    composes: bordered;
+.channel {
     border-left: none;
     flex: 1 1;
-    background-color: lightyellow;
+    display: flex;
+    flex-direction: column;
 }

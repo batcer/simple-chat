@@ -1,0 +1,12 @@
+.contact {
+    border-bottom: 1px solid lightgray;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.activeContact {
+    background-color: #effbff;
+}

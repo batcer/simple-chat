@@ -16,6 +16,7 @@ export class Channel {
     }
 
     addMessage(message) {
+        message.store = this.store;
         this.messages.push(message);
     }
 }

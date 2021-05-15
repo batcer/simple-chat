@@ -7,9 +7,15 @@ const getContacts = () => {
         name: 'Cliff Diamond'
     }, {
         id: '31f51bef-1abe-44be-a4fc-2f8ad1141bbe',
-        name: 'Mikhail Batcer',
-        isMyself: true
+        name: 'Mikhail Batcer'
     }])
+}
+
+const authorize = () => {
+    return Promise.resolve({
+        id: '31f51bef-1abe-44be-a4fc-2f8ad1141bbe',
+        name: 'Mikhail Batcer'
+    })
 }
 
 const getMessages = (contactId) => {
@@ -40,5 +46,5 @@ const getMessages = (contactId) => {
     return Promise.resolve(messages[contactId]);
 }
 
-const storage = {getContacts, getMessages};
+const storage = {authorize, getContacts, getMessages};
 export default storage;

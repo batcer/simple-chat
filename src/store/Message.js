@@ -1,4 +1,3 @@
-import {v4 as uuid} from 'uuid';
 import {extendObservable} from 'mobx';
 
 export class Message {
@@ -6,8 +5,14 @@ export class Message {
     contactId = null; // from
     text = '';
     date = null;
+    store = null;
 
-    constructor(options) {
+    constructor(options, store) {
         extendObservable(this, options);
+        this.store = store;
+    }
+
+    isMine() {
+        return this.contactId === this.store.myself?.id;
     }
 }

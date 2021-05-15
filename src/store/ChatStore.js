@@ -4,9 +4,13 @@ import {Contact} from './Contact';
 import {Message} from './Message';
 
 export class ChatStore {
+
     storage;
+
     _contacts = {};
     _channels = [];
+    myself = null;
+
     currentChannel = null;
     isChannelLoading = false;
     isLoading = true;
@@ -14,6 +18,7 @@ export class ChatStore {
     constructor(storage) {
         makeAutoObservable(this);
         this.storage = storage;
+        this.authorize();
         this.loadContacts();
     }
 
@@ -25,7 +30,7 @@ export class ChatStore {
         return this._contacts[contactId];
     }
 
-    setCurrentChannel = (contact) => {
+    setCurrentContact = (contact) => {
         const contactId = contact.id;
         runInAction(() => {
             if (!this._channels[contactId]) {
@@ -35,9 +40,23 @@ export class ChatStore {
             this.isChannelLoading = true;
             this.storage.getMessages(contactId)
                 .then((fetchedMessages => {
-                    this.currentChannel.messages = fetchedMessages.map(message => new Message(message));
+                    this.currentChannel.messages = fetchedMessages.map(message => new Message(message, this));
                     this.isChannelLoading = false;
                 }))
+        })
+    }
+
+    isCurrentContact = (contact) => {
+        return !!this.currentChannel &&  this.currentChannel === this._channels[contact.id];
+    }
+
+    authorize = () => {
+        this.isLoading = true;
+        this.storage.authorize().then(userData => {
+            runInAction(() => {
+                this.myself = new Contact(userData, this);
+                this.isLoading = false;
+            });
         })
     }
 

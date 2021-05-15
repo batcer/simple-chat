@@ -1,0 +1,34 @@
+.messageForm {
+    display: flex;
+    justify-content: center;
+    background-color: lightgray;
+    padding: 5px;
+}
+
+.messageInput {
+    flex: 0 1 50%;
+    border-radius: 5px;
+    background: white;
+    height: auto;
+}
+
+.buttonWrapper {
+    display: flex;
+    padding: 0 0 0 10px;
+    align-items: center;
+}
+
+.sendButton {
+    cursor: pointer;
+    background-color: white;
+    border-radius: 5px;
+    height: 30px;
+    border: none;
+    color: gray;
+    font-weight: bold;
+}
+
+.messageInput:focus,
+.sendButton:focus {
+    outline: none;
+}
