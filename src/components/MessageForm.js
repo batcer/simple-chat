@@ -8,7 +8,7 @@ import {Message} from '../store/Message';
 import style from './MessageForm.module.css';
 
 const MessageForm = () => {
-    const {currentChannel, getContactById} = useContext(StoreContext);
+    const {currentChannel, getContactById, myself} = useContext(StoreContext);
     if (!currentChannel) {
         return null;
     }
@@ -16,12 +16,8 @@ const MessageForm = () => {
     const inputRef = createRef();
 
     const postMessage = () => {
-        const message = new Message({
-            id: uuid(),
-            text: inputRef.current.innerText,
-            date: new Date().toISOString()
-        })
-        currentChannel.addMessage(message);
+        const text = inputRef.current.innerText;
+        currentChannel.addMessageWithText(text);
         inputRef.current.innerText = '';
     }
 

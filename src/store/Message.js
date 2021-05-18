@@ -3,8 +3,10 @@ import {extendObservable} from 'mobx';
 export class Message {
     id = null;
     contactId = null; // from
+    channelId = null;
     text = '';
     date = null;
+
     store = null;
 
     constructor(options, store) {
