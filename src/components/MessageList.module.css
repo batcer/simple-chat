@@ -2,6 +2,7 @@
     flex: 1 1;
     padding: 10px 50px;
     background-color: #fffaef;
+    overflow-y: scroll;
 }
 
 .messageWrapper {
