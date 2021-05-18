@@ -8,6 +8,8 @@ export default class Storage {
             channels: 'id,contactId',
             messages: 'id,channelId,contactId,text,date'
         });
+        // TODO: use db.on("populate", function () {}); to populate DB with mock data
+        // https://dexie.org/docs/Dexie/Dexie.on.populate
     }
 
     getContacts = () => {
