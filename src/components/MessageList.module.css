@@ -43,5 +43,6 @@
 .messageContent {
     text-align: left;
     margin-top: 10px;
+    white-space: pre-wrap;
 }
 
