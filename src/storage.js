@@ -47,7 +47,7 @@ export default class Storage {
     }
 
     getMessages = (channel) => {
-        return this.db.messages.where('channelId').equals(channel.id).toArray();
+        return this.db.messages.where('channelId').equals(channel.id).sortBy('date');
         // const messages = {
         //     '3a9f0fb8-66ad-4515-8fde-08ac1dade627': [{
         //         id: 'ca11c98b-7473-4e11-bf8b-92bca80cc9e8',
